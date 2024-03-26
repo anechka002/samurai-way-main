@@ -19,15 +19,15 @@ function App() {
     {id: 3, title: 'js'},
     {id: 4, title: 'react'},
   ]
-  const title: Array<TitlePropsType> = [
+  const item: Array<TitlePropsType> = [
     {id: 1, title: '-Home- '},
     {id: 2, title: '-News Feed- '},
     {id: 3, title: '-Messages- '},
   ]
   return (
     <div>
-      <Header titles={title}/>
-      <Technologies tasks={task}/>
+      <Header titleItems={item} title={'New Header'}/>
+      <Technologies tasks={task} title={'Menu'}/>
     </div>
   );
 }

@@ -2,16 +2,17 @@ import React from 'react'
 import { TitlePropsType } from '../App'
 
 type HeaderPropsType = {
-  titles: TitlePropsType[]
+  titleItems: TitlePropsType[]
+  title: string
 }
 
-function Header({titles}: HeaderPropsType) {
+function Header({titleItems, title}: HeaderPropsType) {
   return (
     <div>
-      
-      {titles.map((t)=>{
+      <h4>{title}</h4>
+      {titleItems.map((t)=>{
         return (
-          <a key={t.id} href="#">{t.title}</a>
+            <a key={t.id} href="#">{t.title}</a>
         )
       })}
   

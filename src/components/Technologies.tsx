@@ -3,11 +3,13 @@ import { TaskPropsType } from '../App'
 
 type TechnologiesPropsType = {
   tasks: TaskPropsType[]
+  title: string
 }
 
-function Technologies({tasks}: TechnologiesPropsType) {
+function Technologies({tasks, title}: TechnologiesPropsType) {
   return (
     <div>
+      <h4>{title}</h4>
       <ul>
         
         {tasks.map((t)=>{
