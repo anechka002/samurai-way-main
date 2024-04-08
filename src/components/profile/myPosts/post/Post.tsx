@@ -1,21 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from './Post.module.css'
+import { PostType } from '../MyPosts'
 
 type PostPropsType = {
-  message: string
-  likeCount: number
-  onClickLikeCount?: () => void
+  post: PostType
+  handleIncrementLikesCount: (postId: number) => void
 }
 
-function Post({message, likeCount, onClickLikeCount}: PostPropsType) {
+function Post({post, handleIncrementLikesCount}: PostPropsType) {
+
+  const onClickLikeCount = () => {
+    handleIncrementLikesCount(post.id)
+  }
+  
   return (
-    <div className={s.item}>
-      <img src="https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png" />
-      {message}
-      <div>
-        <span onClick={onClickLikeCount}>like: {likeCount} </span>
+    
+    <div className={s.post}>
+      <div className={s.item}>
+        <img src={post.img} />
+        {post.message}
+      </div>
+      <div className={s.like}>
+        <span onClick={onClickLikeCount}>like: {post.likesCount} </span>
       </div>
     </div>
+      
   )
 }
 
