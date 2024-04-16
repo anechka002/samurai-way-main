@@ -4,7 +4,7 @@ import { PostType } from '../MyPosts'
 
 type PostPropsType = {
   post: PostType
-  handleIncrementLikesCount: (postId: number) => void
+  handleIncrementLikesCount: (postId: string) => void
 }
 
 function Post({post, handleIncrementLikesCount}: PostPropsType) {
