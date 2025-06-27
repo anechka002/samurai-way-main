@@ -7,14 +7,13 @@ type PostPropsType = {
   handleIncrementLikesCount: (postId: string) => void
 }
 
-function Post({post, handleIncrementLikesCount}: PostPropsType) {
+export const Post = ({post, handleIncrementLikesCount}: PostPropsType) => {
 
   const onClickLikeCount = () => {
     handleIncrementLikesCount(post.id)
   }
   
   return (
-    
     <div className={s.post}>
       <div className={s.item}>
         <img src={post.img} />
@@ -23,9 +22,6 @@ function Post({post, handleIncrementLikesCount}: PostPropsType) {
       <div className={s.like}>
         <span onClick={onClickLikeCount}>like: {post.likesCount} </span>
       </div>
-    </div>
-      
+    </div>     
   )
 }
-
-export default Post

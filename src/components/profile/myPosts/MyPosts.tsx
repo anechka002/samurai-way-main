@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 import s from './MyPosts.module.css'
-import Post from './post/Post';
 import { v1 } from 'uuid'
+import { Post } from './post/Post'
 
 export type PostType = {
   id: string
@@ -69,27 +69,31 @@ const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 
   return (
     <div>
-      <div>My post</div>
-      <div>New post</div>
-      <input 
-        className={error ? s.inputError : ''}
-        value={newPostTitle} 
-        onChange={onChangeSetPostHandler} 
-        onKeyDown={onKeyDownAddPostHandler} 
-      />
-      <button onClick={onClickAddPostHandler}>add</button>
-      {error && <div className={s.inputErrorMessage}>{error}</div>}
-
-      {posts.map((post) => (
-        <Post 
-          key={post.id} 
-          post={post} 
-          handleIncrementLikesCount={handleIncrementLikesCount}
+      My post
+      <div>      
+        <input 
+          className={error ? s.inputError : ''}
+          value={newPostTitle} 
+          onChange={onChangeSetPostHandler} 
+          onKeyDown={onKeyDownAddPostHandler} 
         />
-      ))}
+        <button onClick={onClickAddPostHandler}>add</button>
+        {error && <div className={s.inputErrorMessage}>{error}</div>}
+      </div>
+
+      <div className={s.posts}>
+        {posts.map((post) => (
+          <Post 
+            key={post.id} 
+            post={post} 
+            handleIncrementLikesCount={handleIncrementLikesCount}
+          />
+        ))}
+      </div>
 
     </div>
   )
 }
 
 export default MyPosts;
+

@@ -1,0 +1,16 @@
+.active {
+  color: white;
+  padding: 9px;
+}
+
+.dialog {
+  color: black;
+  text-decoration: none;
+  padding: 9px;
+  font-weight: 600;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,14 @@
+.dialogs {
+  display: flex;
+  margin: 10px;
+}
+
+.dialogsItems {
+  margin-right: 60px;
+}
+
+.message {
+  padding: 5px;
+  color: white;
+}
+
