@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { UserType } from '../Dialogs';
 import s from './DialogItem.module.css'
 
@@ -7,7 +7,7 @@ type PropsType = {
   user: UserType
 }
 
-function DialogItem({user}: PropsType) {
+export const DialogItem = ({user}: PropsType) => {
   let path = '/dialogs/' + user.id;
   return (
     <div className={s.item}>
@@ -19,7 +19,3 @@ function DialogItem({user}: PropsType) {
     </div>
   )
 }
-
-export default DialogItem;
-
-// className={(navData)=> (navData.isActive ? s.active : s.dialog)}

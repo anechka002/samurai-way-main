@@ -3,6 +3,7 @@
   background-color: cornflowerblue;
   padding: 20px;
 }
+
 .item {
   color: white;
   font-size: 20px;
@@ -10,7 +11,7 @@
   padding: 2px;
 }
 
-.item .active{
+.active{
   color: gold;
   padding: 2px;
 }

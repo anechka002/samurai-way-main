@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import s from './Dialogs.module.css'
-import DialogItem from './dialogItem/DialogItem'
 import { Message } from './message/Message'
+import { DialogItem } from './dialogItem/DialogItem'
 
 export type UserType = {
   id: number
