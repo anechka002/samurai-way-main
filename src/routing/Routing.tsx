@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
 import { Dialogs } from '../components/dialogs/Dialogs';
-import Profile from '../components/profile/Profile';
+import {Profile} from '../components/profile/Profile';
 import { PATH } from '../constans/constans';
 import { News } from '../components/news/News';
 

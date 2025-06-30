@@ -28,6 +28,7 @@ export const Dialogs = () => {
     {id: 1, text: 'Hi'},
     {id: 2, text: 'Hello'},
     {id: 3, text: 'Ok'},
+    {id: 4, text: 'Yo'},
   ])
 
   return (

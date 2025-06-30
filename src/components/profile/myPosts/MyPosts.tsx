@@ -10,7 +10,7 @@ export type PostType = {
   likesCount: number
 }
 
-function MyPosts() {
+export const MyPosts = () => {
   const [posts, setPosts] = useState<PostType[]>([
       {
         id: v1(), 
@@ -68,8 +68,8 @@ const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 }
 
   return (
-    <div>
-      My post
+    <div className={s.postsBlock}>
+      <h3>My post</h3>
       <div>      
         <input 
           className={error ? s.inputError : ''}
@@ -90,10 +90,7 @@ const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
           />
         ))}
       </div>
-
     </div>
   )
 }
-
-export default MyPosts;
 

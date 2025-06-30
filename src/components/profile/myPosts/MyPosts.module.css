@@ -1,3 +1,10 @@
+.postsBlock {
+  padding: 10px;
+}
+.postsBlock h3 {
+  margin-bottom: 10px;
+}
+
 .inputError {
   border: 1px solid red;
   outline: none;
