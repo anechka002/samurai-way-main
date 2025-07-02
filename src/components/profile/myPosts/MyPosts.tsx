@@ -1,96 +1,69 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
-import s from './MyPosts.module.css'
-import { v1 } from 'uuid'
-import { Post } from './post/Post'
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import s from './MyPosts.module.css';
+import { Post } from './post/Post';
+import { PostType } from '../../../redux/state';
 
-export type PostType = {
-  id: string
-  img: string
-  message: string
-  likesCount: number
-}
+type Props = {
+  posts: PostType[];
+  newPostText: string
+  addPost: (post: string) => void
+  updateNewPostText: (newText: string) => void
+  // handleIncrementLikesCount: (postId: string) => void
+};
 
-export const MyPosts = () => {
-  const [posts, setPosts] = useState<PostType[]>([
-      {
-        id: v1(), 
-        img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png", 
-        message: 'Hi, how are you?',
-        likesCount: 10
-      },
-      {
-        id: v1(), 
-        img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png", 
-        message: "I'm learn React",
-        likesCount: 5
-      },
-    ]
-  ) 
+export const MyPosts = ({ posts, addPost, newPostText, updateNewPostText }: Props) => {
+  // const [newPostTitle, setNewPostTitle] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-  const [newPostTitle, setNewPostTitle] = useState('');
-  const [error, setError] = useState<string | null>(null)
+  // const addPostHandler = () => {    
+  //     addPost(newPostText)
+  // };
 
+  const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    // setNewPostTitle(e.currentTarget.value);
+    updateNewPostText(e.currentTarget.value)
+  };
 
-const handleIncrementLikesCount = (postId: string) => {
-  setPosts(posts.map(p => p.id === postId ? {...p, likesCount: p.likesCount + 1} : p))
-}
-
-const addPost = (message: string) => {
-  let newPost: PostType = {
-    id: v1(),
-    img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png", 
-    message: message,
-    likesCount: 0
+  const onClickAddPostHandler = () => {
+    let trimmedPostTitle = newPostText.trim()
+    if(trimmedPostTitle) {
+      addPost(newPostText)
+    } else {
+      setError('Title is required')
+    }
+    // setNewPostTitle('')
   }
-  setPosts([newPost, ...posts])
-}
 
-const onClickAddPostHandler = () => {
-  let trimmedPostTitle = newPostTitle.trim()
-  if(trimmedPostTitle) {
-    addPost(newPostTitle)
-  } else {
-    setError('Title is required')
+  const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    setError(null)
+    if(e.key === 'Enter') {
+      onClickAddPostHandler()
+    }
   }
-  setNewPostTitle('')
-}
-
-const onChangeSetPostHandler = (e:ChangeEvent<HTMLInputElement>) => {
-  setNewPostTitle(e.currentTarget.value)
-  // console.log(e.currentTarget.value)
-}
-
-const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-  setError(null)
-  if(e.key === 'Enter') {
-    onClickAddPostHandler()
-  }
-}
 
   return (
     <div className={s.postsBlock}>
       <h3>My post</h3>
-      <div>      
-        <input 
+      <div className={s.postInput}>
+        <textarea
           className={error ? s.inputError : ''}
-          value={newPostTitle} 
-          onChange={onChangeSetPostHandler} 
-          onKeyDown={onKeyDownAddPostHandler} 
+          value={newPostText}
+          onChange={onPostChangeHandler}
+          onKeyDown={onKeyDownAddPostHandler}
         />
-        <button onClick={onClickAddPostHandler}>add</button>
+        <button onClick={onClickAddPostHandler}>Add Post</button>
         {error && <div className={s.inputErrorMessage}>{error}</div>}
       </div>
 
       <div className={s.posts}>
         {posts.map((post) => (
-          <Post 
-            key={post.id} 
-            post={post} 
-            handleIncrementLikesCount={handleIncrementLikesCount}
+          <Post
+            key={post.id}
+            post={post}
+            // handleIncrementLikesCount={handleIncrementLikesCount}
           />
         ))}
       </div>
     </div>
-  )
-}
-
+  );
+};

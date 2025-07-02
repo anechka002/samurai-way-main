@@ -1,40 +1,25 @@
-import React, { useState } from 'react'
 import s from './Dialogs.module.css'
 import { Message } from './message/Message'
 import { DialogItem } from './dialogItem/DialogItem'
+import { DialogPageType } from '../../redux/state'
+import { useRef } from 'react'
 
-export type UserType = {
-  id: number
-  name: string
+type Props = {
+  state: DialogPageType
 }
 
-export type MessageType = {
-  id: number
-  text: string
-}
+export const Dialogs = ({state}: Props) => {
+  let ref = useRef<HTMLTextAreaElement>(null)
 
-export const Dialogs = () => {
-
-  const [users, setUsers] = useState<UserType[]>([
-    {id: 1, name: 'Sveta'},
-    {id: 2, name: 'Anna'},
-    {id: 3, name: 'Viktor'},
-    {id: 4, name: 'Valera'},
-    {id: 5, name: 'Alex'},
-    {id: 6, name: 'John'},
-  ])
-
-  const [messages, setMessages] = useState<MessageType[]>([
-    {id: 1, text: 'Hi'},
-    {id: 2, text: 'Hello'},
-    {id: 3, text: 'Ok'},
-    {id: 4, text: 'Yo'},
-  ])
+  const addMessage = () => {
+    let message = ref.current?.value
+    alert(message)
+  }
 
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
-        {users.map((user) => (
+        {state.users.map((user) => (
           <DialogItem 
             key={user.id}
             user={user}
@@ -42,12 +27,16 @@ export const Dialogs = () => {
         ))}
       </div>
       <div className={s.message}>
-        {messages.map((message) => (
+        {state.messages.map((message) => (
           <Message
             key={message.id}
             message={message}
           />
         ))}
+        <div className={s.messageInput}>
+          <textarea ref={ref}></textarea>
+          <button onClick={addMessage}>send</button>
+        </div>
       </div>
     </div>
   )

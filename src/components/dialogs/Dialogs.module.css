@@ -29,3 +29,8 @@
 .dialogItem {
   margin-bottom: 5px;
 }
+
+.messageInput {
+  display: flex;
+  /* padding: 10px; */
+}

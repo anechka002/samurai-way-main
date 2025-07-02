@@ -17,3 +17,8 @@
 .posts {
   margin-top: 20px;
 }
+
+.postInput {
+  display: flex;
+  gap: 5px;
+}

@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import { PostType } from '../../../../redux/state'
 import s from './Post.module.css'
-import { PostType } from '../MyPosts'
 
 type PostPropsType = {
   post: PostType
-  handleIncrementLikesCount: (postId: string) => void
+  // handleIncrementLikesCount: (postId: string) => void
 }
 
-export const Post = ({post, handleIncrementLikesCount}: PostPropsType) => {
+export const Post = ({post}: PostPropsType) => {
 
-  const onClickLikeCount = () => {
-    handleIncrementLikesCount(post.id)
-  }
+  // const onClickLikeCount = () => {
+  //   handleIncrementLikesCount(post.id)
+  // }
   
   return (
     <div className={s.post}>
@@ -20,7 +19,8 @@ export const Post = ({post, handleIncrementLikesCount}: PostPropsType) => {
         {post.message}
       </div>
       <div className={s.like}>
-        <span onClick={onClickLikeCount}>like: {post.likesCount} </span>
+        <span>like: {post.likesCount} </span>
+        {/* <span onClick={onClickLikeCount}>like: {post.likesCount} </span> */}
       </div>
     </div>     
   )
