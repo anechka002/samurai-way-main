@@ -22,6 +22,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
   users: UserType[];
   messages: MessageType[];
+  newMessage: string;
 };
 export type SidebarType = {};
 export type RootStateType = {
@@ -63,6 +64,7 @@ export const state: RootStateType = {
       { id: 3, text: 'Ok' },
       { id: 4, text: 'Yo' },
     ],
+    newMessage: 'Hello',
   },
   sidebar: {},
 };
@@ -81,5 +83,20 @@ export const addPost = (postText: string) => {
 
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText
+  renderTree(state)
+}
+
+export const addMessage = (message: string) => {
+  const newMessage : MessageType = {
+    id: 5,
+    text: message,
+  }
+  state.dialogsPage.messages = [newMessage, ...state.dialogsPage.messages]
+  state.dialogsPage.newMessage = ''
+  renderTree(state)
+}
+
+export const updateNewMessageText = (newText: string) => {
+  state.dialogsPage.newMessage = newText
   renderTree(state)
 }

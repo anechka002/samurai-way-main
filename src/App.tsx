@@ -8,9 +8,11 @@ type Props = {
   state: RootStateType
   addPost: (post: string) => void
   updateNewPostText: (newText: string) => void
+  addMessage: (message: string) => void
+  updateNewMessageText: (newText: string) => void
 }
 
-function App({state, addPost, updateNewPostText}: Props) {
+function App({state, addPost, updateNewPostText, addMessage, updateNewMessageText}: Props) {
 
   // const handleIncrementLikesCount = (postId: string) => {
   //   setPosts(
@@ -20,15 +22,6 @@ function App({state, addPost, updateNewPostText}: Props) {
   //   );
   // };
 
-  // const addPost = (message: string) => {
-  //   let newPost: PostType = {
-  //     id: v1(),
-  //     img: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
-  //     message: message,
-  //     likesCount: 0,
-  //   };
-  //   setPosts([newPost, ...posts]);
-  // };
 
   return (
     <div className="app-wrapper">
@@ -39,6 +32,8 @@ function App({state, addPost, updateNewPostText}: Props) {
           state={state}
           addPost={addPost}
           updateNewPostText={updateNewPostText}
+          addMessage={addMessage}
+          updateNewMessageText={updateNewMessageText}
           // handleIncrementLikesCount={handleIncrementLikesCount}
         />
       </div>
