@@ -72,7 +72,7 @@ export const store: StoreType = {
         { id: 3, text: 'Ok' },
         { id: 4, text: 'Yo' },
       ],
-      newMessage: 'Hello',
+      newMessage: '',
     },
     sidebar: {},
   },
@@ -93,7 +93,7 @@ export const store: StoreType = {
         const newPost: PostType = {
           id: v1(),
           img: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
-          message: this._state.profilePage.newPostText,
+          message: action.newPostText,
           likesCount: 0,
         };
         this._state.profilePage.posts = [
@@ -109,7 +109,7 @@ export const store: StoreType = {
         this._callSubscriber();
         break;
       }
-      case 'ADD-MESSAGE': {
+      case 'SEND-MESSAGE': {
         const newMessage: MessageType = {
           id: 5,
           text: action.message,
@@ -134,27 +134,19 @@ export const store: StoreType = {
   },
 };
 
-export type ActionsTypes =
-  | AddPostActionType
-  | UpdateNewPostTextActionType
-  | AddMessageActionType
-  | UpdateNewMessageTextActionType;
+// action creators
+export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const);
+export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
+export const sendMessageAC = (message: string) => ({type: 'SEND-MESSAGE', message} as const)
+export const updateNewMessageTextAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text} as const)
 
-type AddPostActionType = {
-  type: 'ADD-POST';
-  newPostText: string;
-};
-type UpdateNewPostTextActionType = {
-  type: 'UPDATE-NEW-POST-TEXT';
-  newText: string;
-};
-type AddMessageActionType = {
-  type: 'ADD-MESSAGE';
-  message: string;
-};
-type UpdateNewMessageTextActionType = {
-  type: 'UPDATE-NEW-MESSAGE-TEXT';
-  newText: string;
-};
+// actions
+export type ActionsTypes =
+  | ReturnType<typeof addPostAC> 
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof sendMessageAC> 
+  | ReturnType<typeof updateNewMessageTextAC>
+
+
 
 (window as any).store = store;

@@ -20,7 +20,6 @@ function App({store}: Props) {
   //   );
   // };
 
-
   return (
     <div className="app-wrapper">
       <Header />

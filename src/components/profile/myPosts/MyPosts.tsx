@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import s from './MyPosts.module.css';
 import { Post } from './post/Post';
-import { ActionsTypes, PostType } from '../../../redux/state';
+import { ActionsTypes, addPostAC, PostType } from '../../../redux/state';
 
 type Props = {
   posts: PostType[];
@@ -20,7 +20,8 @@ export const MyPosts = ({ posts, dispatch, newPostText}: Props) => {
   const onClickAddPostHandler = () => {
     let trimmedPostTitle = newPostText.trim()
     if(trimmedPostTitle) {
-      dispatch({type: 'ADD-POST', newPostText: trimmedPostTitle})
+      // dispatch({type: 'ADD-POST', newPostText: trimmedPostTitle})
+      dispatch(addPostAC(trimmedPostTitle))
     } else {
       setError('Title is required')
     }
