@@ -9,7 +9,7 @@ type Props = {
 }
 
 function App({store}: Props) {
-
+  
   const state = store.getState();
 
   // const handleIncrementLikesCount = (postId: string) => {

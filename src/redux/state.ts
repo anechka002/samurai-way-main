@@ -1,4 +1,6 @@
 import { v1 } from 'uuid';
+import { dialogsReducer } from './dialogs-reducer';
+import { profileReducer } from './profile-reducer';
 
 export type PostType = {
   id: string;
@@ -37,6 +39,22 @@ export type StoreType = {
   subscribe: (observer: () => void) => void;
   dispatch: (action: ActionsTypes) => void;
 };
+
+export type ActionsTypes =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof sendMessageAC>
+  | ReturnType<typeof updateNewMessageTextAC>;
+
+// action creators
+export const addPostAC = (newPostText: string) =>
+  ({ type: 'ADD-POST', newPostText } as const);
+export const updateNewPostTextAC = (text: string) =>
+  ({ type: 'UPDATE-NEW-POST-TEXT', newText: text } as const);
+export const sendMessageAC = (message: string) =>
+  ({ type: 'SEND-MESSAGE', message } as const);
+export const updateNewMessageTextAC = (text: string) =>
+  ({ type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text } as const);
 
 export const store: StoreType = {
   _state: {
@@ -87,66 +105,11 @@ export const store: StoreType = {
     this._callSubscriber = observer;
   },
 
-  dispatch(action) {
-    switch (action.type) {
-      case 'ADD-POST': {
-        const newPost: PostType = {
-          id: v1(),
-          img: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
-          message: action.newPostText,
-          likesCount: 0,
-        };
-        this._state.profilePage.posts = [
-          newPost,
-          ...this._state.profilePage.posts,
-        ];
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber();
-        break;
-      }
-      case 'UPDATE-NEW-POST-TEXT': {
-        this._state.profilePage.newPostText = action.newText;
-        this._callSubscriber();
-        break;
-      }
-      case 'SEND-MESSAGE': {
-        const newMessage: MessageType = {
-          id: 5,
-          text: action.message,
-        };
-        this._state.dialogsPage.messages = [
-          newMessage,
-          ...this._state.dialogsPage.messages,
-        ];
-        this._state.dialogsPage.newMessage = '';
-        this._callSubscriber();
-        break
-      }
-      case 'UPDATE-NEW-MESSAGE-TEXT': {
-        this._state.dialogsPage.newMessage = action.newText;
-        this._callSubscriber();
-        break
-      }
-      default: {
-        break;
-      }
-    }
+  dispatch(action: ActionsTypes) {
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._callSubscriber();
   },
 };
-
-// action creators
-export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const);
-export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
-export const sendMessageAC = (message: string) => ({type: 'SEND-MESSAGE', message} as const)
-export const updateNewMessageTextAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text} as const)
-
-// actions
-export type ActionsTypes =
-  | ReturnType<typeof addPostAC> 
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof sendMessageAC> 
-  | ReturnType<typeof updateNewMessageTextAC>
-
-
 
 (window as any).store = store;

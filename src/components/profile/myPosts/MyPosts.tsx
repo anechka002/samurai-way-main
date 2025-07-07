@@ -5,34 +5,34 @@ import { ActionsTypes, addPostAC, PostType } from '../../../redux/state';
 
 type Props = {
   posts: PostType[];
-  newPostText: string
-  dispatch: (action: ActionsTypes) => void
+  newPostText: string;
+  dispatch: (action: ActionsTypes) => void;
   // handleIncrementLikesCount: (postId: string) => void
 };
 
-export const MyPosts = ({ posts, dispatch, newPostText}: Props) => {
+export const MyPosts = ({ posts, dispatch, newPostText }: Props) => {
   const [error, setError] = useState<string | null>(null);
 
   const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
+    dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value });
   };
 
   const onClickAddPostHandler = () => {
-    let trimmedPostTitle = newPostText.trim()
-    if(trimmedPostTitle) {
+    let trimmedPostTitle = newPostText.trim();
+    if (trimmedPostTitle) {
       // dispatch({type: 'ADD-POST', newPostText: trimmedPostTitle})
-      dispatch(addPostAC(trimmedPostTitle))
+      dispatch(addPostAC(trimmedPostTitle));
     } else {
-      setError('Title is required')
+      setError('Title is required');
     }
-  }
+  };
 
   const onKeyDownAddPostHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    setError(null)
-    if(e.key === 'Enter') {
-      onClickAddPostHandler()
+    setError(null);
+    if (e.key === 'Enter') {
+      onClickAddPostHandler();
     }
-  }
+  };
 
   return (
     <div className={s.postsBlock}>

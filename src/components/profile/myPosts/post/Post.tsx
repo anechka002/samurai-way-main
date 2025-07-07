@@ -1,17 +1,16 @@
-import { PostType } from '../../../../redux/state'
-import s from './Post.module.css'
+import { PostType } from '../../../../redux/state';
+import s from './Post.module.css';
 
 type PostPropsType = {
-  post: PostType
+  post: PostType;
   // handleIncrementLikesCount: (postId: string) => void
-}
+};
 
-export const Post = ({post}: PostPropsType) => {
-
+export const Post = ({ post }: PostPropsType) => {
   // const onClickLikeCount = () => {
   //   handleIncrementLikesCount(post.id)
   // }
-  
+
   return (
     <div className={s.post}>
       <div className={s.item}>
@@ -22,6 +21,6 @@ export const Post = ({post}: PostPropsType) => {
         <span>like: {post.likesCount} </span>
         {/* <span onClick={onClickLikeCount}>like: {post.likesCount} </span> */}
       </div>
-    </div>     
-  )
-}
+    </div>
+  );
+};

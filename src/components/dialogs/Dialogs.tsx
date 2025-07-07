@@ -1,12 +1,17 @@
 import s from './Dialogs.module.css';
 import { Message } from './message/Message';
 import { DialogItem } from './dialogItem/DialogItem';
-import { ActionsTypes, sendMessageAC, DialogPageType, updateNewMessageTextAC } from '../../redux/state';
+import {
+  ActionsTypes,
+  sendMessageAC,
+  DialogPageType,
+  updateNewMessageTextAC,
+} from '../../redux/state';
 import { ChangeEvent } from 'react';
 
 type Props = {
   state: DialogPageType;
-  dispatch: (action: ActionsTypes) => void
+  dispatch: (action: ActionsTypes) => void;
 };
 
 export const Dialogs = ({ state, dispatch }: Props) => {
@@ -30,7 +35,11 @@ export const Dialogs = ({ state, dispatch }: Props) => {
           <Message key={message.id} message={message} />
         ))}
         <div className={s.messageInput}>
-          <textarea placeholder='Enter your message' value={state.newMessage} onChange={onMessageChangeHandler}></textarea>
+          <textarea
+            placeholder="Enter your message"
+            value={state.newMessage}
+            onChange={onMessageChangeHandler}
+          ></textarea>
           <button onClick={sendMessageHandler}>send</button>
         </div>
       </div>
