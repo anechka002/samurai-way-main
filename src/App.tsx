@@ -5,11 +5,10 @@ import { NavBar } from './components/navBar/NavBar';
 import { StoreType } from './redux/state';
 
 type Props = {
-  store: StoreType
-}
+  store: StoreType;
+};
 
 function App({store}: Props) {
-  
   const state = store.getState();
 
   // const handleIncrementLikesCount = (postId: string) => {
