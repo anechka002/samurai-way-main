@@ -2,17 +2,15 @@ import './App.css';
 import Header from './components/header/Header';
 import { Routing } from './routing/Routing';
 import { NavBar } from './components/navBar/NavBar';
-import { RootStateType } from './redux/state';
+import { StoreType } from './redux/state';
 
 type Props = {
-  state: RootStateType
-  addPost: (post: string) => void
-  updateNewPostText: (newText: string) => void
-  addMessage: (message: string) => void
-  updateNewMessageText: (newText: string) => void
+  store: StoreType
 }
 
-function App({state, addPost, updateNewPostText, addMessage, updateNewMessageText}: Props) {
+function App({store}: Props) {
+
+  const state = store.getState();
 
   // const handleIncrementLikesCount = (postId: string) => {
   //   setPosts(
@@ -30,10 +28,7 @@ function App({state, addPost, updateNewPostText, addMessage, updateNewMessageTex
       <div className="app-wrapper-content">
         <Routing
           state={state}
-          addPost={addPost}
-          updateNewPostText={updateNewPostText}
-          addMessage={addMessage}
-          updateNewMessageText={updateNewMessageText}
+          dispatch={store.dispatch.bind(store)}
           // handleIncrementLikesCount={handleIncrementLikesCount}
         />
       </div>
