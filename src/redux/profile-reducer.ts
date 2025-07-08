@@ -1,8 +1,26 @@
 import { v1 } from 'uuid';
-import { ActionsTypes, PostType, ProfilePageType } from './state';
+import { ActionsTypes, PostType, ProfilePageType } from './store';
+
+const initState = {
+  posts: [
+    {
+      id: v1(),
+      img: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+      message: "I'm learn React",
+      likesCount: 5,
+    },
+    {
+      id: v1(),
+      img: 'https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676295806139337963.png',
+      message: 'Hello, how are you?',
+      likesCount: 10,
+    },
+  ],
+  newPostText: 'Test',
+};
 
 export const profileReducer = (
-  state: ProfilePageType,
+  state: ProfilePageType = initState,
   action: ActionsTypes
 ): ProfilePageType => {
   switch (action.type) {

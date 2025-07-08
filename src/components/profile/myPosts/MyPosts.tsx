@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import s from './MyPosts.module.css';
 import { Post } from './post/Post';
-import { ActionsTypes, addPostAC, PostType } from '../../../redux/state';
+import { ActionsTypes, addPostAC, PostType } from '../../../redux/store';
 
 type Props = {
   posts: PostType[];

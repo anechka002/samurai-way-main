@@ -1,4 +1,4 @@
-import { ActionsTypes, ProfilePageType } from '../../redux/state';
+import { ActionsTypes, ProfilePageType } from '../../redux/store';
 import s from './Profile.module.css';
 import { MyPosts } from './myPosts/MyPosts';
 import { ProfileInfo } from './profileInfo/ProfileInfo';

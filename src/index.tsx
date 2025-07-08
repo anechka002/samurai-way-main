@@ -1,19 +1,14 @@
 import './index.css';
-import { store } from './redux/state';
+import { store } from './redux/redux-store';
 import { BrowserRouter } from 'react-router';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { Provider } from 'react-redux';
 
-const container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container);
-
-export const renderTree = () => {
-  root.render(
-    <BrowserRouter>
-      <App store={store} />
-    </BrowserRouter>
-  );
-};
-
-store.subscribe(renderTree);
-renderTree();
+createRoot(document.getElementById('root')!).render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>
+)

@@ -6,7 +6,7 @@ import {
   sendMessageAC,
   DialogPageType,
   updateNewMessageTextAC,
-} from '../../redux/state';
+} from '../../redux/store';
 import { ChangeEvent } from 'react';
 
 type Props = {

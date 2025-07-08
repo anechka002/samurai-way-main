@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import s from '../Dialogs.module.css';
-import { UserType } from '../../../redux/state';
+import { UserType } from '../../../redux/store';
 
 type PropsType = {
   user: UserType;

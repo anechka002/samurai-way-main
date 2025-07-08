@@ -1,4 +1,4 @@
-import { PostType } from '../../../../redux/state';
+import { PostType } from '../../../../redux/store';
 import s from './Post.module.css';
 
 type PostPropsType = {
